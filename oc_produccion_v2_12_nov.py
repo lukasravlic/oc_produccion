@@ -333,9 +333,9 @@ df_base.rename(columns={'dias_para_oc':'Hoy - OC (dias)','Result':'Fuera de Esta
 df_base['Fecha Reporte'] = hoy
 
 # %%
-columnas = ['Material_x', 'Documento compras', 'Material Actual']
+columnas = [ 'Documento compras', 'Material Actual','Cod_Actual_1']
 df_base.drop(columns=columnas, inplace=True)
-
+df_base.rename(columns ={'Material_x':'Cod_Actual_1'}, inplace=True)
 # %%
 df_base.to_excel(f'C:/Users/{usuario}/Inchcape/Planificación y Compras Chile - Documentos/Planificación y Compras KPI-Reportes/OC-Producción OEM/bases python/oc_produccion_semana_{hoy.isocalendar()[1]}.xlsx')
 
@@ -736,17 +736,16 @@ df_historico['Familia'] = ''
 df_historico['Costo UN CLP'] = ''
 df_historico['Segmentacion'] = ''
 df_historico['Plan mantención'] = ''
-df_historico['Cod_Actual_1'] = ''
+
 df_historico['Fechas corregidas R3'] = ''
 
 
 
 # %%
-df_historico = df_historico[['AUX','status_v1','Texto breve','fecha_de_entrega','Proveedor/Centro suministrador','Cl.documento compras','Marca','Status_V2','Prefijo OC','Documento compras','Posición','Cód. Mat de prov en OC','Vía (Texto)','Pto. Origen','Pto. Destino','Nro. DT','Fecha documento','Fe. ATA','Nro. SOLPED','Cantidad de pedido','Nivel de Urgencia','dias_desde_oc','fuera_de_estandar','Semana','Mes', 'Año','Familia','Costo UN CLP', 'Segmentacion', 'Plan mantención', 'Cod_Actual_1', 'Fechas corregidas R3','Por calcular (cantidad)','Fecha Reporte']]
+df_historico = df_historico[['AUX','status_v1','Material','Texto breve','fecha_de_entrega','Proveedor/Centro suministrador','Cl.documento compras','Marca','Status_V2','Prefijo OC','Documento compras','Posición','Cód. Mat de prov en OC','Vía (Texto)','Pto. Origen','Pto. Destino','Nro. DT','Fecha documento','Fe. ATA','Nro. SOLPED','Cantidad de pedido','Nivel de Urgencia','dias_desde_oc','fuera_de_estandar','Semana','Mes', 'Año','Familia','Costo UN CLP', 'Segmentacion', 'Plan mantención',  'Fechas corregidas R3','Por calcular (cantidad)','Fecha Reporte']]
 
 # %%
-df_historico.rename(columns={ 'Por calcular (cantidad)':'Cantidad','Proveedor/Centro suministrador':'Nombre del proveedor','Marca':'NomSector_actual','Documento compras':'Nro. OC SAP','Posición':'Posición OC SAP','Cantidad de pedido':'Cant. UN. OC','dias_desde_oc':'Hoy - OC (dias)','Fecha documento':'Fecha Creación OC','status_v1':'Status','fecha_de_entrega':'Fecha','Status_V2':'Status_V2','fuera_de_estandar':'Fuera de Estandar'}, inplace=True)
-
+df_historico.rename(columns={ 'Por calcular (cantidad)':'Cantidad','Proveedor/Centro suministrador':'Nombre del proveedor','Marca':'NomSector_actual','Documento compras':'Nro. OC SAP','Posición':'Posición OC SAP','Cantidad de pedido':'Cant. UN. OC','dias_desde_oc':'Hoy - OC (dias)','Fecha documento':'Fecha Creación OC','status_v1':'Status','fecha_de_entrega':'Fecha','Status_V2':'Status_V2','fuera_de_estandar':'Fuera de Estandar','Material':'Cod_Actual_1'}, inplace=True)
 # %%
 # df_oc.drop(columns=['Unnamed: 0'], inplace=True)
 
