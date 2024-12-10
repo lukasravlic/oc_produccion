@@ -93,7 +93,10 @@ data = [
     '40000280   MAZDA NORTH AMERICAN OPE',
     '40000460   DERCO COLOMBIA SAS',
     '40003304   CHANGZHOU SUNWOOD INTERN',
-    '40003805   Great Wall Motor Middle'
+    '40003805   Great Wall Motor Middle',
+    '40003865   Mobitech Co., Ltd'
+
+
 ]
 
 
@@ -335,10 +338,10 @@ df_base['Fecha Reporte'] = hoy
 # %%
 columnas = [ 'Documento compras', 'Material Actual','Cod_Actual_1']
 df_base.drop(columns=columnas, inplace=True)
-df_base.rename(columns ={'Material_x':'Cod_Actual_1'}, inplace=True)
+
 # %%
 df_base.to_excel(f'C:/Users/{usuario}/Inchcape/Planificación y Compras Chile - Documentos/Planificación y Compras KPI-Reportes/OC-Producción OEM/bases python/oc_produccion_semana_{hoy.isocalendar()[1]}.xlsx')
-
+df_base.rename(columns ={'Material_x':'Cod_Actual_1'}, inplace=True)
 df_base['AUX'] = df_base['AUX'].astype('str')
 #AQUI COMIENZA EVOLUTIVO BO
 
@@ -766,6 +769,20 @@ df_bo.drop_duplicates(subset='AUX', inplace=True)
 
 # %%
 df_final = df_final.merge(df_bo, on='AUX', how='left')
+
+columns = [
+    "AUX", "Status", "Texto breve", "Cantidad", "Fecha", 
+    "Nombre del proveedor", "NomSector_actual", "Cl.documento compras", 
+    "Status_V2", "Prefijo OC", "Nro. OC SAP", "Posición OC SAP", 
+    "Cód. Mat de prov en OC", "Vía (Texto)", "Pto. Origen", "Pto. Destino", 
+    "Nro. DT", "Fecha Creación OC", "Fe. ATA", "Nro. SOLPED", "Cant. UN. OC", 
+    "Nivel de Urgencia", "Hoy - OC (dias)", "Fuera de Estandar", "Semana", 
+    "Mes", "Año", "Familia", "Costo UN CLP", "Segmentacion", 
+    "Plan mantención",  "Cod_Actual_1","Fechas corregidas R3", "Fecha Reporte", "Input", 
+    "Fecha de modificación"
+]
+
+df_final = df_final[columns]
 
 # %%
 df_final.to_excel(f"C:/Users/{usuario}/Inchcape/Planificación y Compras Chile - Documentos/Planificación y Compras KPI-Reportes/OC-Producción OEM/bases python/consolidado BO.xlsx")
