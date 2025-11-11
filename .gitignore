@@ -1,0 +1,5 @@
+*.parquet
+*.spec
+*.xlsx
+build/
+dist/
